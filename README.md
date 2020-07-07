@@ -1,44 +1,123 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Redux
 
-## Available Scripts
+```javascript
+yarn add redux
+yarn add react-redux
+```
 
-In the project directory, you can run:
+## What is Redux
 
-### `yarn start`
+## Basic concepts
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- ### `Store` : holds the state (There is only one state)
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+- ### `Action` : state can be modified using actions
 
-### `yarn test`
+- ### `Dispatcher` : Action needs to be sent by someone (dispatching an action)
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ### `Reducer` : receives the action and modifies the state to return a new state
 
-### `yarn build`
+- ### `Subscriber` : listens for state change to update the UI (using connect)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- ### `Provider` : makes the store available to all its children elements
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- ### `mapStateToProps` : this function takes state as an argument and it takes the state from the store and maps it to the props
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- ### `mapDispatchToProps` : this function has dispatch as an argument and it takes the actions to be dispatched and maps it to the props
 
-### `yarn eject`
+- ### `connect` : connects below
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  - props created via `mapStateToProps` to the props of the component
+  - actions defined via `mapDispatchToProps` to the props of the component
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- ### `CombineReducers` : this is a fuction provided by redux to combine multiple reducers into a single reducer
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Flow
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+`Store` contains the `state` ->  
+`state` can only be modified by using `actions` ->  
+`actions` must be called via `reducer` to update the state ->  
+the `action` reaches the `reducer` via `dispatcher` [e.g. onPress event dispatches the action]
 
-## Learn More
+1. `Store` needs a reducer to be able to access and modify it
+2. `reducer` needs the `initial state` and `action` as arguments and updates the state based on the `type` of the action
+3. `Provider` passes makes the state from the `store`, available to all the children components
+4. `mapStateToProps` maps the state from the store to props
+5. `mapDispatchToProps` maps the actions to be dispatched to the props
+6. `connect`s the `mapStateToProps` and `mapDispatchToProps` to the props of the component
+7. the `action` is triggered from event handler
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```javascript
+const initialState = {counter:0}
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+//------------------------------------(2)
+const reducer = (state = initialState, action) => {
+  switch(action.type){
+    case 'INCREASE_COUNTER':
+      return {counter : state.counter + 1}
+    case 'DECREASE_COUNTER':
+      return {counter : state.counter - 1}
+  }
+  return state;
+}
+
+//------------------------------------(1)
+const store = createStore(reducer)
+
+...
+
+render(){
+  return(
+//------------------------------------(3)
+    <Provider store = {store}>
+      <CounterApp/>
+    </Provider>
+  )
+}
+
+...
+
+//------------------------------------(4)
+const mapStateToProps = (state) {
+  return {
+    counter : state.counter
+  }
+}
+//------------------------------------(5)
+const mapDispatchToProps = (dispatch) = {
+  return{
+    increaseCounter: () => dispatch({type:'INCREASE_COUNTER'}),
+    decreaseCounter: () => dispatch({type:'DECREASE_COUNTER'})
+  }
+}
+
+//------------------------------------(7)
+const handleIncrement () => this.increaseCounter();
+
+...
+
+//------------------------------------(6)
+export default connect(mapStateToProps,mapDispatchToProp)(CounterApp)
+
+```
+
+---
+
+## Topics covered
+
+- ### `Private route`
+
+- ### `Charts`
+
+---
+
+## References
+
+- https://reacttraining.com/react-router/web/guides/quick-start
+- https://www.sitepoint.com/react-router-complete-guide/
+- https://www.freecodecamp.org/news/react-router-in-5-minutes/
+- https://github.com/public-apis/public-apis
+- [Naming Conventions](https://github.com/unional/typescript-guidebook/blob/master/pages/default/draft/naming-conventions.md#file-naming)
+- https://gist.github.com/siakaramalegos/df4620c52e829f6107c75d5c3f0ad7f5
+- [Axios](http://codeheaven.io/ow-to-use-axios-as-your-http-client/)
+- [typescript error soln for private route](https://stackoverflow.com/a/57451939/2739864)
