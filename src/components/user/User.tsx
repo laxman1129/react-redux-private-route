@@ -1,4 +1,5 @@
 import React from "react";
-const User = () => <div>User</div>;
+import css from "./User.module.css";
+const User = () => <div className={css.container}>User</div>;
 
 export default User;

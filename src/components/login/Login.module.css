@@ -4,8 +4,8 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-image: linear-gradient(to top, rgba(55, 75, 198, 0.52), rgba(18, 195, 233, 0.73)),
-        url('../../assets/fingerprint.jpg');
+    background-image: linear-gradient(to top, rgba(5, 75, 198, 0.52), rgba(1, 1, 2, 0.3)),
+            url('../../assets/fingerprint.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -48,4 +48,18 @@ button.formdata {
     width: 20rem;
     padding: 0.2rem;
     margin-top: 10vh;
+}
+
+@media( min-width:775px) {
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+            background-image: linear-gradient(to top, rgba(5, 75, 198, 0.52), rgba(1, 1, 2, 0.3)),
+                url('../../assets/fingerprint.jpg');
+        background-size: cover;
+        background-position: top;
+    }
 }
