@@ -27,11 +27,11 @@ const PrivateRoute = (
    */
   const renderRedirect = (props: any) => {
     if (!sessionHasBeenFetched) {
-      return <div></div>;
+      return <div>No session fetched</div>;
     } else {
       return isAuthenticated ? (
         // Component! makes sure that the component is not undefined
-        checkAuthorities(Component!, isAuthorized)
+        checkAuthorities(Component!, isAuthorized, props)
       ) : (
         <Redirect
           to={{
@@ -67,6 +67,10 @@ export const hasAnyAuthority = (
   authorities: string[],
   hasAnyAuthorities: string[]
 ) => {
+  console.log('====================================');
+  console.log(authorities);
+  console.log(hasAnyAuthorities);
+  console.log('====================================');
   if (authorities && authorities.length !== 0) {
     if (hasAnyAuthorities.length === 0) {
       return true;
@@ -78,18 +82,18 @@ export const hasAnyAuthority = (
 
 const checkAuthorities = (
   Component: React.ComponentType<any> | React.ComponentType<any>,
-  isAuthorized: boolean
+  isAuthorized: boolean,
+  props: any
 ) => {
-  return (props: any) =>
-    isAuthorized ? (
-      <Component {...props} />
-    ) : (
-      <div className="insufficient-authority">
-        <div className="alert alert-danger">
-          You are not authorized to access this page.
-        </div>
+  return isAuthorized ? (
+    <Component {...props} />
+  ) : (
+    <div className="insufficient-authority">
+      <div className="alert alert-danger">
+        You are not authorized to access this page.
       </div>
-    );
+    </div>
+  );
 };
 
 // maps the state to the props of the component

@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to top, rgba(55, 75, 198, 0.52), rgba(18, 195, 233, 0.73)),
+        url('../../assets/fingerprint.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.containt {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7));
+    height: 20rem;
+    width: 25rem;
+    border-radius: 2rem;
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.formdata {
+    justify-content: flex-start;
+    align-self: flex-start;
+}
+
+label.formdata {
+    width: 100%;
+    padding-left: 0.2rem;
+    margin-top: 1rem;
+}
+
+input.formdata {
+    width: 100%;
+    padding: 0.3rem;
+    border-radius: 0.2rem;
+}
+
+button.formdata {
+    width: 20rem;
+    padding: 0.2rem;
+    margin-top: 10vh;
+}

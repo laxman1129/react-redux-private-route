@@ -121,3 +121,6 @@ export default connect(mapStateToProps,mapDispatchToProp)(CounterApp)
 - https://gist.github.com/siakaramalegos/df4620c52e829f6107c75d5c3f0ad7f5
 - [Axios](http://codeheaven.io/ow-to-use-axios-as-your-http-client/)
 - [typescript error soln for private route](https://stackoverflow.com/a/57451939/2739864)
+- https://redux.js.org/recipes/usage-with-typescript
+- https://react-redux.js.org/using-react-redux/connect-mapstate
+- [Why to use thunk](https://stackoverflow.com/a/50664690/2739864)

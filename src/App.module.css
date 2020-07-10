@@ -1,5 +1,7 @@
-.App {
-  display: flexbox;
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
 
   background-image: linear-gradient(to top, RGBA(175, 238, 238, 0.36), rgba(137, 182, 154, 0.42), rgba(230, 230, 250, 0.50));
