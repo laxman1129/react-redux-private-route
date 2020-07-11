@@ -66,11 +66,7 @@ const PrivateRoute = (
 export const hasAnyAuthority = (
   authorities: string[],
   hasAnyAuthorities: string[]
-) => {
-  console.log('====================================');
-  console.log(authorities);
-  console.log(hasAnyAuthorities);
-  console.log('====================================');
+) => {  
   if (authorities && authorities.length !== 0) {
     if (hasAnyAuthorities.length === 0) {
       return true;

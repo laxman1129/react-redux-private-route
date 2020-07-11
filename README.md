@@ -107,6 +107,10 @@ export default connect(mapStateToProps,mapDispatchToProp)(CounterApp)
 
 - ### `Private route`
 
+Authentication `verifies you are who you say you are`, whereas Authorization `decides if you have permission to access a resource`.
+
+`Private Route` component restricts users who do not have authorization to access certain routes, even when they have been authenticated by the system.
+
 - ### `Charts`
 
 ---
@@ -124,3 +128,4 @@ export default connect(mapStateToProps,mapDispatchToProp)(CounterApp)
 - https://redux.js.org/recipes/usage-with-typescript
 - https://react-redux.js.org/using-react-redux/connect-mapstate
 - [Why to use thunk](https://stackoverflow.com/a/50664690/2739864)
+- [using hooks](https://fettblog.eu/typescript-react/hooks/#useref)
